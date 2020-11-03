@@ -6,6 +6,7 @@ import { all, takeLatest, select, call, put } from 'redux-saga/effects';
 import { IState } from '../..';
 import api from '../../../services/api';
 import { addProductToCartFailure, addProductToCartRequest, addProductToCartSuccess } from './actions';
+import { ActionTypes } from './types';
 
 // Guarantee type of action on function
 type checkProductStockRequest = ReturnType<typeof addProductToCartRequest>;
@@ -42,5 +43,5 @@ function* checkProductStock({ payload }: checkProductStockRequest) {
 
 export default all([
   // Which action would be listened
-  takeLatest('ADD_PRODUCT_TO_CART_REQUEST', checkProductStock)
+  takeLatest(ActionTypes.addProductToCartRequest, checkProductStock)
 ])
